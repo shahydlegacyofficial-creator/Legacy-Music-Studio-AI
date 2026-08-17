@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070c0e">
+  <title>Legacy Music Studio // MiniMax Music 3</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="space-field" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="brand-signal"></span>
+        <strong>LEGACY</strong>
+        <span>MUSIC STUDIO</span>
+        <i></i>
+        <small>CORE · LOCAL</small>
+      </div>
+      <div class="top-status">
+        <span id="clock"></span>
+        <span class="status-chip"><i id="statusDot" class="signal-dot"></i><b id="statusText">CONNECTING</b></span>
+        <button class="ghost-button" data-nav="engine">ENGINE</button>
+      </div>
+    </header>
+
+    <aside class="left-rail">
+      <nav class="primary-nav" aria-label="Studio navigation">
+        <button class="nav-item active" data-nav="create"><span>01</span><b>CREATE</b><small>NEW CUE</small></button>
+        <button class="nav-item" data-nav="library"><span>02</span><b>LIBRARY</b><small>LOCAL FILES</small></button>
+        <button class="nav-item" data-nav="presets"><span>03</span><b>PRESETS</b><small>SOUND SYSTEMS</small></button>
+        <button class="nav-item" data-nav="engine"><span>04</span><b>ENGINE</b><small>RUNTIME STATUS</small></button>
+      </nav>
+      <section class="rail-module model-module">
+        <p class="eyebrow">ACTIVE MODEL</p>
+        <div class="model-name"><span class="model-glyph">M3</span><div><strong>MiniMax Music 3</strong><small>INT8 · LOW VRAM</small></div></div>
+        <dl><div><dt>COMPUTE</dt><dd>CUDA</dd></div><div><dt>OUTPUT</dt><dd>32 KHZ FLAC</dd></div><div><dt>PROFILE</dt><dd class="teal">8 GB SAFE</dd></div></dl>
+      </section>
+      <section class="rail-module small-note">
+        <p class="eyebrow">STUDIO NOTE</p>
+        <p>Keep the launcher window open. Close other GPU-heavy apps before generating.</p>
+      </section>
+      <a class="site-link" href="https://www.shahydlegacy.com" target="_blank" rel="noreferrer">SHAHYDLEGACY.COM <span>↗</span></a>
+    </aside>
+
+    <section class="workspace">
+      <section class="page active" id="page-create">
+        <div class="page-heading">
+          <div><p class="eyebrow">LOCAL MUSIC GENERATION // NEW SESSION</p><h1>Compose at the<br><em>edge of the signal.</em></h1></div>
+          <div class="core-visual" aria-hidden="true"><i></i><i></i><i></i><span>LEGACY<br>CORE</span></div>
+        </div>
+
+        <div class="create-grid">
+          <div class="editor-column">
+            <article class="panel editor-panel">
+              <div class="panel-title"><div><span>01</span><h2>LYRICS + STRUCTURE</h2></div><small id="charCount">0 CHARACTERS</small></div>
+              <textarea id="lyrics" class="lyrics" spellcheck="true" aria-label="Lyrics and song structure">[Intro]
+
+[Verse]
+Neon rain on an empty road
+Every signal carries the load
+
+[Pre-Chorus]
+I hear the future calling my name
+
+[Chorus]
+We rise, we burn, we come alive
+Through the static, we survive
+
+[Instrumental]
+
+[Outro]
+The signal never dies</textarea>
+              <div class="structure-tags" id="tags"></div>
+            </article>
+
+            <article class="panel editor-panel">
+              <div class="panel-title"><div><span>02</span><h2>MUSIC DIRECTION</h2></div><small>STRUCTURED CAPTION</small></div>
+              <textarea id="direction" class="direction" spellcheck="true" aria-label="Music direction">Global Metadata: Progressive metal with cinematic electronic textures. 112 BPM, D minor. Dark verses rising into a triumphant final chorus. Modern, wide production.
+
+Vocal Details: Powerful male lead with controlled grit, intimate low verses, layered harmonies and gang vocals in the chorus.
+
+Arrangement: Drop-tuned guitars, acoustic drums, sub bass and evolving synth pulses. Atmospheric intro; palm-muted verse; orchestral rise; melodic guitar solo; half-time final chorus.</textarea>
+              <div class="caption-guide"><span><b>G</b> GENRE · BPM · KEY · MOOD</span><span><b>V</b> VOICE · TIMBRE · HARMONY</span><span><b>A</b> ARRANGEMENT · MIX · ARC</span></div>
+            </article>
+          </div>
+
+          <aside class="control-column">
+            <article class="panel generation-panel">
+              <div class="panel-title"><div><span>03</span><h2>GENERATION CONTROL</h2></div><small class="safe-label">RTX 5060 TI SAFE</small></div>
+              <label class="control-label">TARGET LENGTH <small>VRAM-TESTED RANGE</small></label>
+              <div class="duration-switch" role="group" aria-label="Track duration">
+                <button class="active" data-duration="15"><strong>00:15</strong><small>SAFE START</small></button>
+                <button data-duration="30"><strong>00:30</strong><small>8 GB MAX</small></button>
+                <button class="locked" data-duration="60" data-vram="16" disabled><strong>01:00</strong><small>16 GB+ · LOCKED</small></button>
+                <button class="locked" data-duration="120" data-vram="24" disabled><strong>02:00</strong><small>24 GB+ · LOCKED</small></button>
+              </div>
+              <div class="meter"><span id="vramMeter"></span></div>
+              <p class="meter-caption"><span>LOW PRESSURE</span><span id="durationHint">RECOMMENDED</span></p>
+              <div class="divider"></div>
+              <label class="control-label" for="seed">SEED <small>REPEATABLE DIRECTION</small></label>
+              <div class="seed-control"><input id="seed" type="number" value="7" min="0" max="2147483647"><button id="randomSeed" title="Randomize seed">↻</button></div>
+              <div class="spec-grid"><div><small>FRAMES</small><b id="frames">375</b></div><div><small>FORMAT</small><b>FLAC</b></div><div><small>RATE</small><b>32 KHZ</b></div></div>
+              <button id="generate" class="primary-action"><i>✦</i><span>GENERATE TRACK</span><small>CTRL + ENTER</small></button>
+              <p class="gpu-note" id="hardwareHint">Detecting GPU memory and applying the safest duration profile…</p>
+            </article>
+
+            <article class="panel output-panel">
+              <div class="panel-title"><div><span>04</span><h2>ACTIVE OUTPUT</h2></div><small id="outputState">IDLE</small></div>
+              <div id="output" class="output-empty"><div class="signal-disc"><i></i></div><strong>AWAITING GENERATION</strong><p>The completed track will appear here and be added to your local library.</p></div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-library">
+        <div class="section-heading"><div><p class="eyebrow">LOCAL ARCHIVE // OUTPUTS</p><h1>Track library.</h1><p>Every completed generation is stored on this PC with its prompt, seed, and duration.</p></div><button id="refreshLibrary" class="outline-action">↻ REFRESH ARCHIVE</button></div>
+        <div class="library-summary"><div><small>TRACKS</small><strong id="trackCount">00</strong></div><div><small>STORAGE</small><strong id="librarySize">0 MB</strong></div><div><small>LOCATION</small><strong>OUTPUTS / LOCAL</strong></div></div>
+        <div id="libraryGrid" class="library-grid"><div class="archive-empty">SCANNING LOCAL ARCHIVE…</div></div>
+      </section>
+
+      <section class="page" id="page-presets">
+        <div class="section-heading"><div><p class="eyebrow">DIRECTION SYSTEMS // QUICK START</p><h1>Genre systems.</h1><p>Twenty curated starting points shaped for the MiniMax Music 3 caption format.</p></div></div>
+        <div class="preset-toolbar">
+          <label class="preset-search"><span>⌕</span><input id="presetSearch" type="search" placeholder="SEARCH GENRES, MOODS OR TEMPO" autocomplete="off"></label>
+          <div id="presetFilters" class="preset-filters"><button class="active" data-category="all">ALL</button><button data-category="pop">POP</button><button data-category="rock">ROCK</button><button data-category="rnb">R&B</button><button data-category="electronic">ELECTRONIC</button><button data-category="cinematic">CINEMATIC</button><button data-category="global">GLOBAL</button><button data-category="hiphop">HIP-HOP</button><button data-category="acoustic">ACOUSTIC</button></div>
+          <small id="presetCount" class="preset-count">20 SYSTEMS</small>
+        </div>
+        <div id="presetGrid" class="preset-grid"></div>
+        <article class="panel prompt-reference">
+          <div class="panel-title"><div><span>+</span><h2>PROMPT BLUEPRINT</h2></div><small>BEST PRACTICE</small></div>
+          <div><section><b>01 / GLOBAL METADATA</b><p>Genre, BPM, key, mood, energy and production character.</p></section><section><b>02 / VOCAL DETAILS</b><p>Voice type, delivery, texture, harmony and language.</p></section><section><b>03 / ARRANGEMENT</b><p>Instrumentation, section arc, dynamics, solo moments and mix.</p></section></div>
+        </article>
+      </section>
+
+      <section class="page" id="page-engine">
+        <div class="section-heading"><div><p class="eyebrow">SYSTEM CORE // LOCAL RUNTIME</p><h1>Engine telemetry.</h1><p>The hidden ComfyUI engine stays behind this dashboard and never replaces it.</p></div><button id="refreshEngine" class="outline-action">↻ CHECK ENGINE</button></div>
+        <div class="engine-layout">
+          <article class="panel engine-hero"><div class="engine-orb"><span id="engineOrb"></span><b>M3</b></div><div><p class="eyebrow">CURRENT STATE</p><h2 id="engineState">CONNECTING</h2><p id="engineDetail">Checking the local runtime…</p><div class="engine-progress"><i id="progress"></i></div></div></article>
+          <article class="panel telemetry"><div class="panel-title"><div><span>01</span><h2>RUNTIME PROFILE</h2></div></div><dl><div><dt>MODEL</dt><dd>MiniMax Music 3 INT8</dd></div><div><dt>BACKEND</dt><dd>Hidden ComfyUI API</dd></div><div><dt>DEVICE</dt><dd id="gpuName">DETECTING NVIDIA GPU</dd></div><div><dt>GPU MEMORY</dt><dd id="gpuMemory">CHECKING…</dd></div><div><dt>SAFE DURATION</dt><dd id="maxDuration">CALCULATING…</dd></div><div><dt>OUTPUT</dt><dd>LOSSLESS FLAC · 32 KHZ</dd></div></dl></article>
+          <article class="panel engine-actions"><div class="panel-title"><div><span>02</span><h2>ENGINE CONTROL</h2></div></div><p>If the model is not ready, this reconnects to the hidden engine and prepares it. Keep the black launcher window open.</p><button id="loadModel" class="primary-action"><i>↻</i><span>CHECK / LOAD MODEL</span></button><pre id="engineError"></pre></article>
+          <article class="panel safety-card"><div class="panel-title"><div><span>03</span><h2>HARDWARE-AWARE PROTOCOL</h2></div></div><ul><li>8 GB GPUs stay safely limited to 15–30 seconds.</li><li>60 seconds unlocks on GPUs with at least 16 GB VRAM.</li><li>2 minutes unlocks on GPUs with at least 24 GB VRAM.</li><li>Generate one track at a time and close other GPU apps.</li></ul></article>
+        </div>
+      </section>
+    </section>
+
+    <aside class="right-rail">
+      <section class="rail-module session-card"><p class="eyebrow">SESSION STATUS</p><dl><div><dt>CORE</dt><dd id="coreStatus">LINKING</dd></div><div><dt>MODE</dt><dd>LOCAL / PRIVATE</dd></div><div><dt>DURATION</dt><dd id="railDuration">00:15 SAFE</dd></div><div><dt>DRAFT</dt><dd id="draftStatus">AUTOSAVED</dd></div></dl></section>
+      <section class="rail-module"><div class="rail-title"><p class="eyebrow">RECENT OUTPUTS</p><button data-nav="library">VIEW ALL</button></div><div id="recentTracks" class="recent-tracks"><p>NO LOCAL TRACKS YET</p></div></section>
+      <section class="rail-module quote-card"><span>“</span><p>SIX STRINGS OUT OF THE INDIAN OCEAN — NOW WIRED INTO A LOCAL MUSIC CORE.</p><small>LEGACY STUDIO · MALÉ</small></section>
+    </aside>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
